@@ -249,17 +249,7 @@ BINARYEN_API void BinaryenModuleDispose(BinaryenModuleRef module);
 
 // Literals. These are passed by value.
 
-struct BinaryenLiteral {
-  uintptr_t type;
-  union {
-    int32_t i32;
-    int64_t i64;
-    float f32;
-    double f64;
-    uint8_t v128[16];
-    const char* func;
-  };
-};
+class BinaryenLiteral {};
 
 BINARYEN_API struct BinaryenLiteral BinaryenLiteralInt32(int32_t x);
 BINARYEN_API struct BinaryenLiteral BinaryenLiteralInt64(int64_t x);
@@ -3073,10 +3063,7 @@ BINARYEN_API size_t BinaryenModuleWriteStackIR(BinaryenModuleRef module,
                                                char* output,
                                                size_t outputSize);
 
-typedef struct BinaryenBufferSizes {
-  size_t outputBytes;
-  size_t sourceMapBytes;
-} BinaryenBufferSizes;
+class BinaryenBufferSizes {};
 
 // Serialize a module into binary form including its source map. Uses the
 // currently set global debugInfo option.
@@ -3093,11 +3080,7 @@ BinaryenModuleWriteWithSourceMap(BinaryenModuleRef module,
 // Result structure of BinaryenModuleAllocateAndWrite. Contained buffers have
 // been allocated using malloc() and the user is expected to free() them
 // manually once not needed anymore.
-typedef struct BinaryenModuleAllocateAndWriteResult {
-  void* binary;
-  size_t binaryBytes;
-  char* sourceMap;
-} BinaryenModuleAllocateAndWriteResult;
+class BinaryenModuleAllocateAndWriteResult {};
 
 // Serializes a module into binary form, optionally including its source map if
 // sourceMapUrl has been specified. Uses the currently set global debugInfo
